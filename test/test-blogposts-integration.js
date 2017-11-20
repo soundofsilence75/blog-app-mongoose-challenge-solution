@@ -91,7 +91,7 @@ describe("GET endpoint", function() {
     it("should return blogposts with right fields", function() {
         let resBlogPost;
         return chai.request(app)
-            .get("/blogposts")
+            .get("/posts")
             .then(function(res) {
                 res.should.have.status(200);
                 res.should.be.json;
@@ -156,7 +156,7 @@ describe("PUT endpoint", function() {
                 updateData.id = blogPost.id;
 
                 return chai.request(app)
-                    .put(`/blogposts/${blogPost.id}`)
+                    .put(`/posts/${blogPost.id}`)
                     .send(updateData);
             })
             .then(function(res) {
@@ -178,7 +178,7 @@ describe("DELETE endpoint", function() {
             .findOne()
             .then(function(_blogPost) {
                 blogPost = _blogPost;
-                return chai.request(app).delete(`/blogposts/${blogPost.id}`);
+                return chai.request(app).delete(`/posts/${blogPost.id}`);
             })
             .then(function(_blogPost) {
                 should.not.exist(_blogPost);
